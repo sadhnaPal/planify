@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "../../../components/colors";
+import colors from "../../../constant/colors";
 
 const styles = StyleSheet.create({
     containner: {
@@ -46,6 +46,15 @@ const styles = StyleSheet.create({
     },
     link:{
         textDecorationLine:'underline'
+    },
+    text:{
+    width:'100%', 
+    fontSize: 12,
+    color: 'black',
+    flexDirection: 'row',
+    flexWrap: 'wrap', // Ensure text wraps to next line
+    marginTop:10,
+  paddingEnd:20
     }
 
 })

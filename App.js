@@ -1,24 +1,25 @@
 import React from 'react';
-import Onboarding from './src/screens/auth/Onboarding';
-import Login from './src/screens/auth/Login';
-import Signup from './src/screens/auth/Signup';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
+import Routes from './src/Routes';
 
 const Stack = createStackNavigator();
 
 const App = () => {
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: '#FFFFFF',
+    },
+  };
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen name='Onboarding' component={Onboarding}/>
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='Signup' component={Signup} />
-      </Stack.Navigator>
-
+    <NavigationContainer theme={theme}>
+      <Routes />
     </NavigationContainer>
   )
 }
 
 export default App;
+ 

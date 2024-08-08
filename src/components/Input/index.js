@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextInput, View, Image, Pressable } from 'react-native';
 import styles from './styles';
-import colors from '../colors';
+import colors from '../../constant/colors';
 
-const InputField = ({placeholder = 'Email', pressable, onPress, style}) =>{
+const InputField = ({placeholder = 'Email', style, ...props}) =>{
    return ( 
     <View style={[styles.container, style]}>
-        <TextInput style={styles.Input} placeholderTextColor={colors.hintColor} placeholder={placeholder}/>
+        <TextInput style={styles.Input} {...props} placeholderTextColor={colors.hintColor} placeholder={placeholder}/>
     </View>
     )
 }
