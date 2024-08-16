@@ -3,11 +3,11 @@ import { TextInput, View, Image, Pressable } from 'react-native';
 import styles from './styles';
 import colors from '../../constant/colors';
 
-const InputField = ({placeholder = 'Email', style, ...props}) =>{
+const InputField = ({outlined,placeholder = 'Email', style, ...props}) =>{
    return ( 
-    <View style={[styles.container, style]}>
-        <TextInput style={styles.Input} {...props} placeholderTextColor={colors.hintColor} placeholder={placeholder}/>
-    </View>
+  
+        <TextInput style={[styles.Input, outlined ? styles.outlined : {}]} {...props} placeholderTextColor={colors.hintColor} placeholder={placeholder}/>
+
     )
 }
 

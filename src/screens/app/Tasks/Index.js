@@ -1,13 +1,19 @@
 import React from 'react'
-import { View ,Text} from 'react-native'
+import { View ,Text, ScrollView} from 'react-native'
 import colors from '../../../constant/colors'
 import Header from '../../../components/Header/Index'
+import PlusIcon from '../../../components/PlusIcon/Index'
+import Title from '../../../components/Title/Index'
 
 const Task = () => {
     return(
-        <View>
+        <View style={{flex:1}}>
             <Header title="Task" />
-            <Text style={{color:'black'}}>Task</Text>
+            <ScrollView>
+            <Title type="thin">To Do Tasks</Title>
+            </ScrollView>
+            <PlusIcon />
+           
         </View>
     )
 }

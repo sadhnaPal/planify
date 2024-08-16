@@ -66,6 +66,8 @@ const Routes = () => {
         <Stack.Screen name='Onboarding' component={Onboarding}/>
         <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Signup' component={Signup} />
+        <Stack.Screen name='AddTask' component={AddTasks} />
+        <Stack.Screen name='Tasks' component={Tasks} />
       </Stack.Navigator>
 
   )

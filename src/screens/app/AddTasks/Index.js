@@ -1,11 +1,78 @@
-import React from 'react'
-import { View ,Text} from 'react-native'
+import React, { useState } from 'react'
+import { View ,Text, SafeAreaView, ScrollView, Pressable, Alert, ActivityIndicator} from 'react-native'
+import styles from './styles'
+import PlusIcon from '../../../components/PlusIcon/Index'
+import { Image } from 'react-native'
+import Title from '../../../components/Title/Index'
+import Input from '../../../components/Input'
+import colors from '../../../constant/colors'
+import { categories } from '../../../constant/categories'
+import Categories from '../../../components/Categories/Index'
+import DateInput from '../../../components/DateInput/Index'
+import Button from '../../../components/Button'
+import moment from 'moment'
+import firestore from '@react-native-firebase/firestore';
 
-const AddTasks = () => {
+const AddTasks = ({navigation}) => {
+    const [getCategories, setCategories] = useState();
+    const [title, setTitle] = useState('')
+    const [deadline, setDeadline] = useState(new Date())
+    const [loading, setLoading] = useState(false)
+    const handleBack = () => {
+     navigation.goBack()
+    }
+
+    const Submit = () =>{
+        const today = moment(new Date()).format('YYYY-MM-DD')
+        const deadlineFormatted = moment(deadline).format('YYYY-MM-DD')
+        if(!title){
+            Alert.alert("Please ennter the task tiitle")
+            return
+        }
+        if(moment(deadlineFormatted).isBefore(today)){
+            Alert.alert('please select a future date')
+            return
+        }
+        setLoading(true)
+        firestore()
+        .collection('Tasks')
+        .doc('ABC')
+        .set({
+              title,
+              deadline,
+              getCategories
+           })
+        .then(() => {
+            setLoading(false)
+            setTitle('')
+            setDeadline(new Date())
+            setCategories(null)
+            navigation.navigate('Tasks')
+        }).catch(e => {
+         console.log("error", e)
+        })
+
+    }
+
     return(
-        <View>
-            <Text style={{colors:'yellow'}}>Add Task</Text>
-        </View>
+        <SafeAreaView style = {styles.container}>
+            <Pressable style={styles.backContainer} hitSlop={8} onPress={handleBack}>
+            <Image style={styles.backIcon} source={require('../../../assests/back_icon.png')} />
+            </Pressable>
+            <Title type="thin">Add New Task</Title>
+            <Text style={styles.lable}>Describe the task</Text>
+            <Input value={title} onChangeText={setTitle} outlined placeholder='Type here...'></Input>
+            <Text style={[styles.lable, {marginTop: 20}]}>Type</Text>
+            <Categories categories={categories} selectedCategory={getCategories} onCategoryPress={setCategories} />
+            <Text style={styles.lable}>Deadline</Text>
+            <DateInput value={deadline} onChange={setDeadline} />
+            { loading ? (
+                <ActivityIndicator />
+            ) : (
+                <Button style={styles.button} type='blue' onPress={Submit}>Add to task</Button>
+            )}
+           
+        </SafeAreaView>
     )
 }
 

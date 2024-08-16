@@ -3,20 +3,20 @@ import colors from "../../constant/colors";
 
 
 const styles = StyleSheet.create({
-    container:{
-        flexDirection:'row',
-        alignItems: 'center',
-        borderRadius: 10,
-        backgroundColor: colors.lightGrey,
-        marginTop:30,
-    },
     Input:{
        color: colors.black,
        fontSize: 14,
+       flexDirection: 'row',
        fontWeight:'500',
-       flex: 1,
+       borderRadius: 10,
        paddingStart:20,
     },
+    outlined:{
+        backgroundColor: colors.white,
+        borderWidth: 1,
+        borderColor: colors.black,
+        marginHorizontal: 20,
+    }
 })
 
 export default styles;
