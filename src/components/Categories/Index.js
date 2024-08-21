@@ -4,7 +4,6 @@ import CategoryStyle from './styles';
 
 
 const Categories = ({categories, selectedCategory, onCategoryPress}) => {
-  console.log("sadhna", categories)
     return (
       <View>
         <FlatList

@@ -1,19 +1,16 @@
 import React from 'react';
-import { TextInput, View, Image, Pressable } from 'react-native';
+import {TextInput} from 'react-native';
 import styles from './styles';
 import colors from '../../constant/colors';
 
-const InputField = ({outlined,placeholder = 'Email', style, ...props}) =>{
-   return ( 
-  
-        <TextInput style={[styles.Input, outlined ? styles.outlined : {}]} {...props} placeholderTextColor={colors.hintColor} placeholder={placeholder}/>
+const Input = ({outlined, ...props}) => {
+  return (
+    <TextInput
+      placeholderTextColor={colors.midGrey}
+      style={[styles.input, outlined ? styles.outlined : {}]}
+      {...props}
+    />
+  );
+};
 
-    )
-}
-
-// SearchInput.defaultProps = {
-//     placeholder: 'Search',
-//     showSearchIcon: true,
-// }
-
-export default React.memo(InputField)
+export default React.memo(Input);

@@ -12,12 +12,16 @@ import DateInput from '../../../components/DateInput/Index'
 import Button from '../../../components/Button'
 import moment from 'moment'
 import firestore from '@react-native-firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux'
+import { setToUpdate } from '../../../store/tasks'
 
 const AddTasks = ({navigation}) => {
+    const user = useSelector(state => state.user.data)
     const [getCategories, setCategories] = useState();
     const [title, setTitle] = useState('')
     const [deadline, setDeadline] = useState(new Date())
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
     const handleBack = () => {
      navigation.goBack()
     }
@@ -29,27 +33,31 @@ const AddTasks = ({navigation}) => {
             Alert.alert("Please ennter the task tiitle")
             return
         }
-        if(moment(deadlineFormatted).isBefore(today)){
-            Alert.alert('please select a future date')
-            return
-        }
+         if(moment(deadlineFormatted).isBefore(today)){
+             Alert.alert('please select a future date')
+             return
+         }
         setLoading(true)
         firestore()
         .collection('Tasks')
-        .doc('ABC')
-        .set({
+        .add({
               title,
               deadline,
-              getCategories
+              getCategories,
+              checked: false,
+              userId: user?.uid
            })
         .then(() => {
             setLoading(false)
+            dispatch(setToUpdate())
             setTitle('')
             setDeadline(new Date())
             setCategories(null)
             navigation.navigate('Tasks')
+
         }).catch(e => {
          console.log("error", e)
+         setLoading(false)
         })
 
     }

@@ -16,7 +16,7 @@ const Onbboarding = ({navigation}) => {
              <Text style={styles.text}>Best task managemennt app </Text> 
              <Text style={styles.subTitle}>Get organized by sorting out all your tasks and boost by your productivity.</Text> 
             <Button onPress={() => navigation.navigate('Login', {navigation})}>Log in</Button>
-            <Button type={'blue'}>Get started</Button>
+            <Button onPress={() => navigation.navigate('Signup', {navigation})} type={'blue'}>Get started</Button>
             </View>
       
         </View>

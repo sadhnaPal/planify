@@ -1,22 +1,22 @@
-import { StyleSheet } from "react-native";
-import colors from "../../constant/colors";
-
+import {StyleSheet} from 'react-native';
+import colors from '../../constant/colors';
 
 const styles = StyleSheet.create({
-    Input:{
-       color: colors.black,
-       fontSize: 14,
-       flexDirection: 'row',
-       fontWeight:'500',
-       borderRadius: 10,
-       paddingStart:20,
-    },
-    outlined:{
-        backgroundColor: colors.white,
-        borderWidth: 1,
-        borderColor: colors.black,
-        marginHorizontal: 20,
-    }
-})
+  input: {
+    backgroundColor: colors.lightGrey,
+    paddingHorizontal: 24,
+    paddingVertical: 13,
+    borderRadius: 10,
+    color: colors.black,
+    marginVertical: 12,
+    fontSize: 15,
+  },
+  outlined: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.grey,
+    marginHorizontal: 24,
+  },
+});
 
 export default styles;
